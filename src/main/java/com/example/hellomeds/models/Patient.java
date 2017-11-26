@@ -1,37 +1,59 @@
 package com.example.hellomeds.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
 /**
  * Created by Anna Hexter on 11/2/2017.
  */
+
+@Entity
 public class Patient {
-    private String firstName;
-    private String lastName;
+    @Size(min=3, max=20)
+    private String firstname;
+
+    @Size(min=3, max=20)
+    private String lastname;
+
+    @Size(min=3, max=20)
     private String username;
+
+    @Size(min=5, max=15)
     private String password;
+
     private String email;
 
-    public Patient(String firstName, String lastName, String username, String password, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    public Patient(String fname, String lastname, String username, String password, String email) {
+        this.firstname = fname;
+        this.lastname = lastname;
         this.username = username;
         this.password = password;
         this.email = email;
     }
+    public Patient(){}
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String fname) {
+        this.firstname = fname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getUsername() {
@@ -56,5 +78,9 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
     }
 }
