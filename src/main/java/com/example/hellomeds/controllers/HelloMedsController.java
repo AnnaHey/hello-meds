@@ -7,7 +7,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -17,8 +16,6 @@ import java.util.ArrayList;
  */
 @Controller
 public class HelloMedsController {
-
-
 
     @RequestMapping(value = "")
     public String index(Model model) {
