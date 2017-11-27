@@ -11,6 +11,11 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Patient {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
     @Size(min=3, max=20)
     private String firstname;
 
@@ -26,13 +31,8 @@ public class Patient {
     private String email;
 
 
-
-    @Id
-    @GeneratedValue
-    private int id;
-
     public Patient(String fname, String lastname, String username, String password, String email) {
-        this.firstname = fname;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
@@ -44,8 +44,8 @@ public class Patient {
         return firstname;
     }
 
-    public void setFirstname(String fname) {
-        this.firstname = fname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {

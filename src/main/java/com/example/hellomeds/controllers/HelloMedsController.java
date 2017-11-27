@@ -41,12 +41,20 @@ public class HelloMedsController {
     @RequestMapping(value = "registration", method = RequestMethod.POST)
     public String addNewPatient(@ModelAttribute @Valid Patient newPatient, Errors errors, Model model) {
 
-        if (errors.hasErrors()){
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Registration!");
             return "registration";
         }
         PatientData.add(newPatient);
-        return "registration";
+        return "redirect:user";
     }
 
-}
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String showNewUser(Model model){
+        model.addAttribute("title","New User Information Saved" );
+        return "user";
+
+        }
+    }
+
+
