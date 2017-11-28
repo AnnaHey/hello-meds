@@ -1,6 +1,7 @@
 package com.example.hellomeds.controllers;
 import com.example.hellomeds.models.Patient;
-import com.example.hellomeds.models.PatientData;
+import com.example.hellomeds.models.data.PatientDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -9,13 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 /**
  * Created by Anna Hexter on 10/10/2017.
  */
 @Controller
 public class HelloMedsController {
+
+    @Autowired
+    private PatientDao patientDao;
+
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -45,7 +49,7 @@ public class HelloMedsController {
             model.addAttribute("title", "Registration!");
             return "registration";
         }
-        PatientData.add(newPatient);
+        patientDao.save(newPatient);
         return "redirect:user";
     }
 
