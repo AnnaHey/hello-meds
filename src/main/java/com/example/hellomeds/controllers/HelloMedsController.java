@@ -1,4 +1,5 @@
 package com.example.hellomeds.controllers;
+import com.example.hellomeds.models.Login;
 import com.example.hellomeds.models.Patient;
 import com.example.hellomeds.models.data.PatientDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,6 @@ public class HelloMedsController {
         return "index";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String displayLoginForm(Model model) {
-        //model.addAttribute("login_name", "username");
-        model.addAttribute("title", "Login");
-        //model.addAttribute(new Patient());
-        return "login";
-    }
-
     @RequestMapping(value = "registration", method = RequestMethod.GET)
     public String displayAddNewPatientForm(Model model) {
         model.addAttribute("title", "Registration!");
@@ -49,9 +42,65 @@ public class HelloMedsController {
             model.addAttribute("title", "Registration!");
             return "registration";
         }
+        Patient alreadyInSystem = patientDao.findByUsername(newPatient.getUsername());
+
+        if (alreadyInSystem != null) {
+            errors.rejectValue("username", "username.alreadyexists", "That username already exists.");
+            return "registration";
+        }
+
+
         patientDao.save(newPatient);
-        return "redirect:user";
+
+        return "redirect:";
     }
+
+   @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login(Model model) {
+        model.addAttribute(new Login());
+        model.addAttribute("title", "Log In");
+        return "login";
+
+
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login(Model model){
+        model.addAttribute("title", "Login");
+        return "login";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(@ModelAttribute @Valid Patient patient, Errors errors, HttpServletRequest request) {
+
+        if (errors.hasErrors()) {
+            return "login";
+        }
+
+        Patient theUser = patientDao.findByUsername(patient.getUsername());
+
+        if (theUser == null) {
+            errors.rejectValue("username", "user.invalid", "The given username does not exist");
+            return "login";
+        }
+
+        String password = patient.getPassword();
+
+        if (password != )
+        if (!theUser.isMatchingPassword(password)) {
+            errors.rejectValue("password", "password.invalid", "Invalid password");
+            return "login";
+        }
+
+        setUserInSession(request.getSession(), theUser);
+
+        return "redirect:";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/login";
+
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String showNewUser(Model model){
@@ -59,6 +108,6 @@ public class HelloMedsController {
         return "user";
 
         }
-    }
+
 
 

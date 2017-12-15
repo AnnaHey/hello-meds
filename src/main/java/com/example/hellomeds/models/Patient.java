@@ -83,4 +83,7 @@ public class Patient {
     public int getId() {
         return id;
     }
+
+    public String isMatchingPassword(String password) {
+        return password;}
 }

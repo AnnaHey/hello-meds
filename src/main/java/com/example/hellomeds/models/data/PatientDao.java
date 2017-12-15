@@ -12,4 +12,6 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface PatientDao extends CrudRepository<Patient, Integer> {
+
+    Patient findByUsername(String username);
 }
