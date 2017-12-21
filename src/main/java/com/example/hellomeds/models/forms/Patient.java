@@ -1,4 +1,4 @@
-package com.example.hellomeds.models;
+package com.example.hellomeds.models.forms;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,16 +16,16 @@ public class Patient {
     @GeneratedValue
     private int id;
 
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 20)
     private String firstname;
 
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 20)
     private String lastname;
 
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 20)
     private String username;
 
-    @Size(min=5, max=15)
+    @Size(min = 5, max = 15)
     private String password;
 
     private String email;
@@ -38,7 +38,9 @@ public class Patient {
         this.password = password;
         this.email = email;
     }
-    public Patient(){}
+
+    public Patient() {
+    }
 
     public String getFirstname() {
         return firstname;
@@ -83,4 +85,10 @@ public class Patient {
     public int getId() {
         return id;
     }
+
 }
+
+    /**
+     * Created by Anna Hexter on 12/14/2017.
+     */
+

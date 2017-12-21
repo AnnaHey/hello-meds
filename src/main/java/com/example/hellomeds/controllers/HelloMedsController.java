@@ -1,5 +1,5 @@
 package com.example.hellomeds.controllers;
-import com.example.hellomeds.models.Patient;
+import com.example.hellomeds.models.forms.Patient;
 import com.example.hellomeds.models.data.PatientDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
