@@ -1,6 +1,7 @@
 package com.example.hellomeds.controllers;
 
 import com.example.hellomeds.models.data.PatientDao;
+import com.example.hellomeds.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -11,11 +12,8 @@ public class AbstractController {
     @Autowired
     protected UserDao userDao;
 
-
-    /*
-    * Other DAOs can be autowired here and they'll be available
-    * to all classes extending AbstractController
-    * */
+    @Autowired
+    protected PatientDao patientDao;
 
     public static final String userSessionKey = "user_id";
 
